@@ -1,12 +1,15 @@
 import { cart, getCartTotal, removeFromCart, clearCart, getCartUnitCount, saveCart } from "../core/cart-state.js";
+import { sendCheckout } from "../services/api.js";
 
 const cartItemContainer = document.getElementById("cart-items-container");
 const summaryTotal = document.getElementById("summary-total");
 const summaryCount = document.getElementById("summary-count");
 const checkOutForm = document.getElementById("checkout-form-page");
+const confirmBtn = document.getElementById("confirm-btn");
 
 document.addEventListener('DOMContentLoaded', () => {
     renderCartPage();
+    setupCheckout();
 });
 
 function renderCartPage() {
@@ -61,22 +64,23 @@ function renderCartPage() {
     summaryCount.textContent = getCartUnitCount();
     summaryTotal.textContent = `$${getCartTotal()}`;
 
-    lucide.createIcons();
+    if (window.lucide) {
+        lucide.createIcons();
+    }
 }
 
 function handleQuantityChange(id, isPlus) {
     const item = cart.find(i => i.id === id);
+    if (!item) return;
 
-    if (item) {
-        if (isPlus) {
-            item.quantity += 1;
-        } else if (item.quantity > 1) {
-            item.quantity -= 1;
-        }
-
-        saveCart();
-        renderCartPage();
+    if (isPlus) {
+        item.quantity += 1;
+    } else if (item.quantity > 1) {
+        item.quantity -= 1;
     }
+
+    saveCart();
+    renderCartPage();
 }
 
 function handleRemove(id) {
@@ -84,4 +88,40 @@ function handleRemove(id) {
         removeFromCart(id);
         renderCartPage();
     }
+}
+
+function setupCheckout() {
+    if (!checkOutForm) return;
+
+    checkOutForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        if (cart.length === 0) {
+            window.alert("Tu carrito está vacío. Agrega productos antes de confirmar.");
+            return;
+        }
+
+        confirmBtn.disabled = true;
+        confirmBtn.textContent = "Procesando...";
+
+        const result = await sendCheckout(cart);
+
+        if (result) {
+            window.alert(
+                `¡Compra confirmada!\n\n` +
+                `ID de pedido: ${result.id}\n` +
+                `Total: $${result.total}\n` +
+                `Productos: ${result.totalProducts}\n\n` +
+                `Gracias por tu compra en GLOW & GRACE.`
+            );
+            clearCart();
+            checkOutForm.reset();
+            renderCartPage();
+        } else {
+            window.alert("Ocurrió un error al procesar la compra. Intenta de nuevo.");
+        }
+
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = "Confirmar Compra";
+    });
 }

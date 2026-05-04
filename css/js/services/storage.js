@@ -1,22 +1,32 @@
-export class CarritoStorage{
-    constructor(key = "cart"){
+function encode(str) {
+    return btoa(unescape(encodeURIComponent(str)));
+}
+
+function decode(b64) {
+    return decodeURIComponent(escape(atob(b64)));
+}
+
+export class CarritoStorage {
+    constructor(key = "cart") {
         this.key = key;
     }
 
-    setCarrito(carrito){
+    setCarrito(carrito) {
         const jsonString = JSON.stringify(carrito);
-
-        localStorage.setItem(this.key, btoa(jsonString));
+        localStorage.setItem(this.key, encode(jsonString));
     }
 
-    getCarrito(){
-        let carrito = localStorage.getItem(this.key);
+    getCarrito() {
+        const raw = localStorage.getItem(this.key);
+        if (!raw) return [];
 
-        if(!carrito) return [];
-
-        let jsonString = atob(carrito);
-
-        return JSON.parse(jsonString);
+        try {
+            return JSON.parse(decode(raw));
+        } catch (error) {
+            console.warn("Carrito corrupto en LocalStorage, se reinicia.", error);
+            localStorage.removeItem(this.key);
+            return [];
+        }
     }
 }
 

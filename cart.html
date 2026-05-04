@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduStore | Mi Carrito</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
 
     <header class="main-header">
@@ -16,8 +21,9 @@
             <div class="logo">
                 <a href="index.html">GLOW<span> & GRACE</span></a>
             </div>
-            
-            <a href="index.html" class="btn-secondary" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+
+            <a href="index.html" class="btn-secondary"
+                style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
                 <i data-lucide="arrow-left" style="width: 18px;"></i>
                 Volver a la tienda
             </a>
@@ -47,9 +53,9 @@
                         <span>Total:</span>
                         <span id="summary-total">$0.00</span>
                     </div>
-                    
+
                     <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid #e2e8f0;">
-                    
+
                     <h4>Datos de Envío</h4>
                     <form id="checkout-form-page">
                         <div class="form-group">
@@ -75,10 +81,11 @@
         </div>
     </footer>
 
-    <script type="module" src="js/pages/cart.js"></script>
+    <script type="module" src="css/js/pages/cart.js"></script>
 
     <script>
         lucide.createIcons();
     </script>
 </body>
+
 </html>
