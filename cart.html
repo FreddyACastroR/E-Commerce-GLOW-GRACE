@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduStore | Mi Carrito</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html">GLOW<span> & GRACE</span></a>
+            </div>
+            
+            <a href="index.html" class="btn-secondary" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+                <i data-lucide="arrow-left" style="width: 18px;"></i>
+                Volver a la tienda
+            </a>
+        </div>
+    </header>
+
+    <main class="container" style="margin-top: 120px; padding-bottom: 5rem;">
+        <h1 style="margin-bottom: 2rem;">Tu Carrito de Compras</h1>
+
+        <div class="cart-page-layout">
+            <!-- Columna Izquierda: Items -->
+            <section class="cart-items-section">
+                <div id="cart-items-container" class="cart-page-items">
+                    <!-- Los items se cargarán aquí -->
+                </div>
+            </section>
+
+            <!-- Columna Derecha: Resumen y Checkout -->
+            <section class="cart-summary-section">
+                <div class="summary-card">
+                    <h3>Resumen de Compra</h3>
+                    <div class="summary-row">
+                        <span>Productos:</span>
+                        <span id="summary-count">0</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span id="summary-total">$0.00</span>
+                    </div>
+                    
+                    <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid #e2e8f0;">
+                    
+                    <h4>Datos de Envío</h4>
+                    <form id="checkout-form-page">
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" required placeholder="ejemplo@correo.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input type="tel" id="phone" required placeholder="1234567890">
+                        </div>
+                        <button type="submit" class="btn-primary full-width" id="confirm-btn">
+                            Confirmar Compra
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2024 - Práctica de Desarrollo Web Front-End</p>
+        </div>
+    </footer>
+
+    <script type="module" src="js/pages/cart.js"></script>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

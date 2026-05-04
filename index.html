@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLOW & GRACE | Práctica de JavaScript Vanilla</title>
+    <meta name="description" content="Una mini tienda web educativa para aprender DOM, Fetch API y eventos en JavaScript.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons (CDN para simplicidad en la práctica) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- Header Fijo -->
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="#">GLOW<span> & GRACE</span></a>
+            </div>
+
+            <div class="search-container">
+                <input type="text" id="product-search" placeholder="Buscar productos..." autocomplete="off">
+                <i data-lucide="search" class="search-icon"></i>
+            </div>
+
+            <a href="cart.html" class="cart-icon-container" id="cart-link">
+                <i data-lucide="shopping-cart"></i>
+                <span id="cart-counter" class="counter">0</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="container">
+        <section class="hero">
+            <h1 style="letter-spacing: 10px; text-transform: uppercase;">GLOW & GRACE</h1>
+            <p>La esencia de la belleza capturada en un solo lugar.</p>
+        </section>
+
+        <!-- Grid de Productos -->
+        <div id="products-grid" class="products-grid">
+            <!-- Los productos se cargarán dinámicamente aquí -->
+            <div class="loader">Cargando productos...</div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2026 - Práctica de Desarrollo Web Front-End</p>
+        </div>
+    </footer>
+
+    <script type="module" src="/js/pages/index.js"></script>
+
+    <!-- Scripts -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
